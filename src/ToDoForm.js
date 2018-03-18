@@ -1,53 +1,52 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-class ToDoForm {
-  constructor {
+class ToDoForm extends Component {
+  constructor(props) {
     super(props);
     this.state = {
-      title: '';
+      title: '',
       description: ''
     }
-  this.handleSubmit = this.bind.handleSubmit();
-  this.handleChange = this.bind.handleChange();
-  this.handleDesc = this.bind.handleDesc();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDesc = this.handleDesc.bind(this);
   }
 
-
   handleSubmit(event) {
-    this.setstate({title: ''}, {description: ''});
     alert('Submitted!');
+    this.setstate({
+      title: ''
+      }, {description: ''});  
   }
 
   handleChange(event) {
-    this.setState({title: this.event.target.title});
+    this.setState({title: event.target.value});
   }
 
   handleDesc(event) {
-    this.setState({description: this.event.target.description});
+    this.setState({description: event.target.value});
 
   }
 
   render() {
-    return (
-      <form className="ToDoForm" onSubmit={this.bind.handleSubmit}>
-        <div>
-          <label>Title
-            <input type="text" name="title" value={this.state.title} onChange={this.bind.handleChange}/>
-          </label>
-        </div>
-        <div>
-          <label>Description
-            <input type="text" name="desription" value={this.state.description} onChange={this.bind.handleDesc}/>
-          </label>
-        </div>
-        <div>
-          <input type="submit" value="Submit"/>
-        </div>
+    return (<form className="ToDoForm" onSubmit={this.handleSubmit.bind(this)}>
+      <div>
+        <label>Title
+          <input type="text" name="title" value={this.state.title} onChange={this.handleChange.bind(this)}/>
+        </label>
+      </div>
+      <div>
+        <label>Description
+          <input type="text" name="desription" value={this.state.description} onChange={this.handleDesc.bind(this)}/>
+        </label>
+      </div>
+      <div>
+        <input type="submit" value="Submit"/>
+      </div>
 
-      </form>
-
-    );
+    </form>);
   }
 
-
 }
+
+export default ToDoForm;
